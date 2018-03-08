@@ -1,18 +1,29 @@
 import { FormsModule, NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
 @Component({
 selector: 'app-cadastro-pessoa-form',
 templateUrl: './cadastro-pessoa-form.component.html',
 styleUrls: ['./cadastro-pessoa-form.component.css']
 })
 export class CadastroPessoaFormComponent implements OnInit {
-pessoas : Array<any>;
-constructor() { }
+
+constructor(private angularFire: AngularFireDatabase) { }
 ngOnInit() { 
-this.pessoas = new Array<any>();
+
 }
 form_submit(f: NgForm) {
-  this.pessoas.push({nome: f.form.controls.nome.value,sobrenome : f.form.controls.sobrenome.value});
-console.log(this.pessoas);
+  this.angularFire.list("pessoas").push(
+    {
+    nome: f.controls.nome.value,
+    sobrenome: f.controls.sobrenome.value
+    }
+    ).then((t: any) => console.log('dados gravados: ' + t.key)),
+    (e: any) => console.log(e.message);
+    
+    f.controls.nome.setValue('salvo');
+    f.controls.sobrenome.setValue('salvo');
+    
+    
 }
 }

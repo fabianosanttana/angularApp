@@ -9,14 +9,12 @@ import { CadastroPessoaModule  } from './cadastro-pessoa/cadastro-pessoa.module'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CadastroPessoaModule
+    AppComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    CadastroPessoaModule,
+    HttpModule,CadastroPessoaModule,
     AngularFireModule.initializeApp(FirebaseConfig)
   ],
   providers: [],
