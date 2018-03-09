@@ -1,3 +1,8 @@
-<p>
-  login-form works!
-</p>
+<h1>Loginho</h1>
+<form #f="ngForm" (submit)="loginForm(f)">
+  <input type="text" ngModel name="email" placeholder="email">
+<br />
+<input type="text" ngModel name="senha" placeholder="senha">
+<br />
+<button type="submit">Logar</button>
+</form>
